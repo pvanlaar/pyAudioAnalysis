@@ -605,7 +605,7 @@ def mtFeatureExtraction(signal, Fs, mtWin, mtStep, stWin, stStep):
     Mid-term feature extraction
     """
 
-    mtWinRatio = int(round(mtWin / stStep))
+    mtWinRatio = int(round(mtWin / stWin))
     mtStepRatio = int(round(mtStep / stStep))
 
     mtFeatures = []
