@@ -72,7 +72,9 @@ def stSpectralCentroidAndSpread(X, fs):
     ind = (numpy.arange(1, len(X) + 1)) * (fs/(2.0 * len(X)))
 
     Xt = X.copy()
-    Xt = Xt / Xt.max()
+    
+    if not sum(Xt) == 0:
+        Xt = Xt / Xt.max()
     NUM = numpy.sum(ind * Xt)
     DEN = numpy.sum(Xt) + eps
 
@@ -293,7 +295,8 @@ def stChromaFeatures(X, fs, nChroma, nFreqsPerChroma):
     #for i in range(12):
     #    finalC[i] = numpy.sum(C[i:C.shape[0]:12])
     finalC = numpy.matrix(numpy.sum(C2, axis=0)).T
-    finalC /= spec.sum()
+    # normalisation below gives errors when signal is all zeros
+    #finalC /= spec.sum()
 
 #    ax = plt.gca()
 #    plt.hold(False)
